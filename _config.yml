@@ -1,0 +1,10 @@
+title: marcetux studios
+author: marcetux
+email: marcetux@gmail.com
+description: >-
+  Notes on software, systems, and the occasional soldering iron — by marcetux.
+baseurl: ""
+url: ""
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+paginate: 10

@@ -1,0 +1,15 @@
+# Private working notes / specs — never committed
+local/
+
+# Jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
