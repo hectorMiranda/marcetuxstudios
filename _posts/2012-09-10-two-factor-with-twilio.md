@@ -23,3 +23,6 @@ The whole RFC 6238 algorithm fits on a page.
 The gotcha with TOTP is always **clock drift**. Accept the adjacent time windows
 (±1 step) and you'll spare yourself a pile of "the code doesn't work" tickets from
 people whose phones are a minute off.
+
+*Update: I wrote this up as a runnable example — `examples/2012/totp/Totp.cs`. It
+prints the current code plus the ±1 windows we accept for drift.*
