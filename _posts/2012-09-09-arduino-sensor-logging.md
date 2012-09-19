@@ -23,3 +23,6 @@ bedroom-temperature graph.
 
 There's a lesson in here that applies at work too: push state to the layer that's
 actually good at keeping it, and let the cheap nodes stay dumb and fast.
+
+*Update: the sketch and the Pi-side logger now live in `examples/2012/arduino/`
+(`dht11_logger.ino` and `logger.py`).*
