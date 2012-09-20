@@ -22,3 +22,7 @@ What I'm watching warily: it's easy to end up with two parallel stacks — MVC
 controllers and API controllers — that don't share as much as you'd hope. For a
 reporting portal where the page and its data API live side by side, I want one
 mental model, not two. Still figuring out where to draw that line.
+
+*Correction: a colleague pointed out Web API shares more with MVC than I implied —
+model binding and filters carry over. The real divergence is routing and
+conventions, not the whole pipeline.*
