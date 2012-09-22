@@ -24,3 +24,6 @@ want on a reporting table that's written by a batch job and read by humans all d
 The discipline: read the actual execution plan, don't guess. The optimizer will
 tell you it wanted an index it didn't have. Believe it before you start adding
 hints.
+
+*Update: added the before/after as `examples/2012/sql/covering_index.sql` —
+turn on `SET STATISTICS IO` and watch the logical reads collapse.*
