@@ -24,3 +24,6 @@ label all just track them.
 It's not a whole framework and I like that. It does data binding and gets out of
 the way. For pages that are mostly "show this server data and let the user poke at
 it," that's the right amount of tool.
+
+*Update: there's a tiny working version now — `examples/2012/knockout/dashboard.html`.
+The footer total is a computed observable, so it recalculates itself.*
