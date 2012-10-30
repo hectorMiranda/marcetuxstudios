@@ -9,5 +9,8 @@ small — enough to try the idea, not a framework.
   remembers" sensor pipeline.
 - `sql/covering_index.sql` — turning a reporting scan into a seek.
 - `knockout/dashboard.html` — a tiny MVVM dashboard.
+- `async/AsyncDownloads.cs` — async/await with `Task.WhenAll` (.NET 4.5).
+- `pi-dashboard/app.py` — a Flask dashboard for the sensor CSV.
+- `halloween/pumpkin_blink.ino` — flickering candle + shadow-triggered servo.
 
 Each example is self-contained; see the comment header in each file for how to run it.
