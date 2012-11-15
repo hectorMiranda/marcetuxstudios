@@ -1,0 +1,18 @@
+#!/bin/sh
+# Block commits that contain obvious debugging leftovers.
+# Install: cp this to .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+# Only look at staged additions.
+added=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cs|js)$')
+[ -z "$added" ] && exit 0
+
+fail=0
+for f in $added; do
+  if git show ":$f" | grep -nE 'Console\.WriteLine|TODO: remove|debugger;'; then
+    echo "blocked: debugging leftover in $f"
+    fail=1
+  fi
+done
+
+[ "$fail" -ne 0 ] && echo "commit aborted (fix the above or use --no-verify)" && exit 1
+exit 0
