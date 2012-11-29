@@ -18,3 +18,8 @@ endpoint can now hand back CSV with no per-controller code.
 
 That's the part I like: one formatter, negotiated by the header, and the whole API
 gains a format. The representation stays a transport concern, not a URL.
+
+*Update: pulled the formatter out into a runnable file —
+`examples/2012/webapi/CsvMediaFormatter.cs`. Register it with
+`config.Formatters.Add(new CsvMediaFormatter())` and every collection endpoint
+speaks CSV.*
