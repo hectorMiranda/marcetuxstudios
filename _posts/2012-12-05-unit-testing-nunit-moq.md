@@ -19,3 +19,6 @@ that asserts "given these readings, the rollup totals are X" survives a refactor
 test that asserts "it called this private method in this order" breaks every time I
 clean the code up, and a test that breaks on healthy refactors is a liability, not a
 safety net. Mock the boundaries, assert the outcomes.
+
+*Update: a runnable version is in `examples/2012/testing/RollupTests.cs` — mocked
+store, behavior asserted, no database in sight.*
