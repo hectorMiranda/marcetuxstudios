@@ -19,3 +19,6 @@ pull more current than the Arduino's regulator will ever give — you feed the s
 from a separate 5V supply and only share ground with the Arduino. Learned that the
 honest way, with a dimming flicker and a warm voltage regulator, before I read the
 datasheet like I should have. Code's in `examples/`.
+
+*Update: the sketch is in `examples/2012/christmas-lights/twinkle.ino` — rainbow with
+a random white sparkle. Mind the power note in the header comment.*
