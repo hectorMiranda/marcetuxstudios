@@ -21,3 +21,7 @@ debugging a digest cycle you didn't know existed. And the dependency-injection b
 *parameter name* is clever until a minifier renames your parameters and everything
 breaks. There's an annotation fix, but it's a sharp edge for newcomers. Net: I'm
 sold enough to build the next dashboard in it.
+
+*Update: extracted the controller and service into
+`examples/2013/angular/dashboard.js` — note the array-style DI annotation so it
+survives minification.*
