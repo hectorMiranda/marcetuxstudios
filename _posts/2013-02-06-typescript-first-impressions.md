@@ -22,3 +22,9 @@ are community-maintained and patchy, and there's a new compile step in a front-e
 build that already has Grunt, LESS, and concat in it. But catching a class of bug at
 compile time instead of at customer-three-clicks-deep is the kind of trade I usually
 take. Trialing it on the new service layer only, for now.
+
+*Update, two weeks in: I wired the TypeScript compile into the Grunt build, emitting
+source maps so the debugger shows `.ts` even though the browser runs minified JS — the
+chain from the source-maps post actually works end to end. The community `angular.d.ts`
+typings are still rough and I've had to patch a few, but typing the service layer alone
+has already caught two property-name bugs before they reached the browser. Keeping it.*
