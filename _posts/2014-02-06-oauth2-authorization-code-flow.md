@@ -24,3 +24,9 @@ that validates the code, checks expiry, and issues a JWT. The JWT part was the f
 piece — signing the token with RSA so any service can verify it without calling home.
 I'd been using symmetric tokens everywhere; the asymmetric model makes more sense at
 scale, and I understand why now.
+
+*Update: Worth noting that for public clients — browser apps and mobile apps that can't
+keep a secret — the authorization code flow has an extension called PKCE (Proof Key for
+Code Exchange) that substitutes a per-request code verifier for the client secret. The
+portal uses a confidential back-channel client so PKCE didn't apply here, but any
+pure-SPA OAuth2 integration should be using it instead of implicit flow.*
