@@ -24,3 +24,9 @@ first rejection only, not all of them. That's usually fine and occasionally surp
 For the matching pipeline it doesn't matter — the steps are inherently sequential —
 but I've already hit a case where I wanted all three failures logged, not just the first.
 `Promise.all` is the right primitive; knowing when it isn't is the part you learn after.
+
+*Update: One more pattern worth noting after a week of use — wrapping each `.then()`
+handler in a try/catch is redundant; any throw inside a promise handler automatically
+becomes a rejection and flows to the nearest `.catch()`. The moment I stopped defensive-
+coding inside individual handlers and trusted the chain, the code got meaningfully
+shorter. The chain is the error boundary.*
