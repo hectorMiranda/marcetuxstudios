@@ -26,3 +26,5 @@ not storage. The job record in DynamoDB is the source of truth; the message is t
 nudge. This makes re-delivery safe (the worker fetches current state regardless of
 when the message was generated) and makes each step independent of what the other steps
 put in their messages.
+
+*Update: the job state record in DynamoDB uses a simple schema — `job_id` (partition key), `status` (enum: queued/processing/done/failed), `updated_at`, and per-step metadata fields like `thumbnail_s3_key` and `rendition_urls` (map). Workers update only their own fields with a conditional expression that checks `status = 'queued'` before claiming a job. The atomic claim is the idempotency gate from the earlier SQS post, applied to the state record itself.*
