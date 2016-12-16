@@ -22,3 +22,9 @@ The thing I'm taking forward is the pipeline pattern: queue-driven, stateless wo
 each step independent, the authoritative state in a database not in the message. It's
 applicable to any workflow that can be decomposed into steps, which is most workflows.
 The specific tools change. The pattern is portable.
+
+*Update: The thing I'd do differently from day one at a media platform: instrument the
+pipeline with application-level metrics immediately. CloudWatch infrastructure metrics
+told me when something broke; the p95 transcoding duration metric I added in August
+would have found three earlier incidents before they became incidents. Visibility is
+cheaper to add at the start than to retrofit.*
