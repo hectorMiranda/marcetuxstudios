@@ -25,3 +25,11 @@ row. The PubSub mechanism is in-memory now and will need to move to Redis when w
 more than one Node process, but that's a change I can make without touching the
 subscription schema. The protocol doesn't care about the PubSub transport. That boundary
 is the part I like most about the design.
+
+*Update: Moved the PubSub layer to Redis before the end of the month — the second Node
+process I spun up for the API tier would have split subscription state otherwise. The
+change was exactly as local as I expected: swap the in-memory `PubSub` for
+`graphql-redis-subscriptions`, point it at the ElastiCache endpoint, remove the
+connection limit warning I'd left in a comment. Subscription clients connected to
+either process now receive events published by either process. The schema and client
+code are unchanged.*
