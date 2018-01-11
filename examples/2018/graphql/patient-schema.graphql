@@ -1,0 +1,39 @@
+# A simplified scheduling schema. The mobile clients query exactly the fields
+# they need per screen — the server resolves the rest.
+type Query {
+  patient(id: ID!): Patient
+  availableSlots(providerId: ID!, date: String!): [Slot!]!
+}
+
+type Patient {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  upcomingAppointments: [Appointment!]!
+}
+
+type Appointment {
+  id: ID!
+  scheduledAt: String!
+  provider: Provider!
+  status: AppointmentStatus!
+}
+
+type Provider {
+  id: ID!
+  name: String!
+  specialty: String!
+}
+
+type Slot {
+  startsAt: String!
+  durationMinutes: Int!
+  provider: Provider!
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  CANCELLED
+}
