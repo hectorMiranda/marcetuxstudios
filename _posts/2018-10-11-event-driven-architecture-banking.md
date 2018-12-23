@@ -27,3 +27,11 @@ happens, and it will happen — network partition, consumer restart, lease expir
 Idempotency key per message, checked against a processed-message log before taking
 action. The discipline is making idempotency a build requirement for every consumer,
 not an afterthought when a bug report arrives.
+
+*Update, from the deployment freeze reading: the outbox poller interval deserves more
+care than I gave it in October. Too frequent and you add unnecessary database load
+during high-throughput periods; too infrequent and your event latency grows to minutes
+during low-volume windows. We landed on an adaptive interval — start at 100ms,
+back off to 2s exponentially if the outbox is empty for several consecutive polls,
+reset immediately on insert via a database notification. That keeps event latency low
+when there's work and quiet when there isn't.*
