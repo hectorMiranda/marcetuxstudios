@@ -1,0 +1,44 @@
+openapi: "3.0.2"
+info:
+  title: Payment Initiation API
+  version: "1.0"
+paths:
+  /payments:
+    post:
+      summary: Initiate a payment
+      operationId: initiatePayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        "202":
+          description: Accepted — payment queued for processing
+          headers:
+            Location:
+              description: URL to poll for payment status
+              schema:
+                type: string
+        "422":
+          description: Unprocessable — validation failure
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+      required: [amount, currency, debtorAccount, creditorAccount, idempotencyKey]
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: USD
+        debtorAccount:
+          type: string
+        creditorAccount:
+          type: string
+        idempotencyKey:
+          type: string
+          description: Client-supplied UUID; safe to retry if same key repeated
