@@ -1,0 +1,81 @@
+# Playbook to provision the Pi 4 monitoring host from a fresh Raspberry Pi OS image.
+# Run: ansible-playbook -i hosts.ini pi-monitor-playbook.yml
+---
+- name: Pi monitoring host setup
+  hosts: pi_monitors
+  become: true
+  vars:
+    influxdb_version: "1.7"
+    grafana_version: "6.5"
+    mqtt_broker: "mosquitto"
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install base packages
+      apt:
+        name:
+          - mosquitto
+          - mosquitto-clients
+          - nginx
+          - python3-pip
+          - git
+        state: present
+
+    - name: Add InfluxDB apt key
+      apt_key:
+        url: https://repos.influxdata.com/influxdb.key
+        state: present
+
+    - name: Add InfluxDB repo
+      apt_repository:
+        repo: "deb https://repos.influxdata.com/debian stable main"
+        state: present
+
+    - name: Install InfluxDB
+      apt:
+        name: influxdb
+        state: present
+      notify: Start InfluxDB
+
+    - name: Deploy Grafana config
+      template:
+        src: templates/grafana.ini.j2
+        dest: /etc/grafana/grafana.ini
+        owner: grafana
+        group: grafana
+        mode: '0640'
+      notify: Restart Grafana
+
+    - name: Configure Nginx reverse proxy
+      template:
+        src: templates/nginx-grafana.conf.j2
+        dest: /etc/nginx/sites-available/grafana
+        mode: '0644'
+      notify: Reload Nginx
+
+    - name: Enable Grafana site
+      file:
+        src: /etc/nginx/sites-available/grafana
+        dest: /etc/nginx/sites-enabled/grafana
+        state: link
+
+  handlers:
+    - name: Start InfluxDB
+      systemd:
+        name: influxdb
+        state: started
+        enabled: yes
+
+    - name: Restart Grafana
+      systemd:
+        name: grafana-server
+        state: restarted
+
+    - name: Reload Nginx
+      systemd:
+        name: nginx
+        state: reloaded
