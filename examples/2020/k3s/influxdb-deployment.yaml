@@ -1,0 +1,31 @@
+# Pin InfluxDB to a node with reliable storage using nodeSelector.
+# local-path provisioner means the PV lives on this node only.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  namespace: sensors
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: pi-node-01
+      containers:
+        - name: influxdb
+          image: influxdb:1.8
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/influxdb
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: influxdb-pvc
