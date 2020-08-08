@@ -1,0 +1,33 @@
+// Pricing service contract — generates typed client and server stubs.
+// Run: dotnet-grpc add-file pricing.proto
+syntax = "proto3";
+
+option csharp_namespace = "Bank.Pricing.V1";
+
+package pricing;
+
+service PricingService {
+  rpc GetLoanRate (LoanRateRequest) returns (LoanRateResponse);
+  rpc GetBatchRates (BatchRateRequest) returns (BatchRateResponse);
+}
+
+message LoanRateRequest {
+  string loan_type    = 1;
+  int32  term_months  = 2;
+  double principal    = 3;
+  string credit_band  = 4;
+}
+
+message LoanRateResponse {
+  double annual_rate   = 1;
+  double monthly_payment = 2;
+  string effective_date  = 3;
+}
+
+message BatchRateRequest {
+  repeated LoanRateRequest requests = 1;
+}
+
+message BatchRateResponse {
+  repeated LoanRateResponse responses = 1;
+}
