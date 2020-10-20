@@ -26,3 +26,5 @@ polling to think about. For services where "the event must be sent if and only i
 data was committed" is a real requirement, the outbox is the right complexity to
 accept. For services where a best-effort publish is fine, it's unnecessary. Knowing
 the difference is the design decision.
+
+*Update: Worth noting the tooling options for the publisher process. Debezium, connected to SQL Server's change data capture feature, is the production-grade CDC path — it reads the transaction log and emits outbox rows as Kafka events with exactly-once guarantees at the CDC layer. For teams without a Kafka cluster, a simple polling job on a short interval (using `SELECT TOP 100 WHERE processed = 0 ORDER BY created_at`) and an `UPDATE processed = 1` after publish works at lower volume and is easier to operate. We're using polling for now; CDC is the direction when throughput requires it.*
