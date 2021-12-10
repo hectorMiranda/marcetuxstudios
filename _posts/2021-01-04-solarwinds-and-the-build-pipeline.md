@@ -25,3 +25,11 @@ we just "upgrade when there's a problem." The answer was uncomfortable. First fi
 is a proper lock file committed alongside the solution and enforced in the pipeline.
 It doesn't prevent every scenario SolarWinds demonstrated, but it at least means a
 surprise version bump is loud instead of silent.
+
+*Update, December 2021: Log4Shell arrived and the SBOM argument from January
+became urgent rather than theoretical. A software bill of materials is what lets
+you answer "do we have this?" in minutes instead of in a 3 a.m. sprint through
+grep and Maven dependency trees. Every prediction from the SolarWinds analysis
+applies directly. The tooling for SBOM generation (CycloneDX, SPDX) has improved
+throughout the year; the window to adopt it before the next Log4Shell is still
+open. Barely.*
