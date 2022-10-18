@@ -25,3 +25,9 @@ import and call each other with verifiable type signatures is a meaningfully saf
 system than the current "serialize arguments to bytes and hope the other side reads them
 right" model. The EVM's ABI encoding is the equivalent of what we have now; the
 component model is what we should eventually have. I'm watching this one closely.
+
+*Update: worth noting that Bytecode Alliance shipped an early version of `wasm-tools`
+with basic WIT parsing support this month. The toolchain is still experimental but
+the ability to parse and validate WIT interface definitions manually is useful for
+following the spec as it evolves. If you're watching this space, `wasm-tools component
+wit` is the subcommand to know about.*
