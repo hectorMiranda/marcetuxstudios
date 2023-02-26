@@ -23,3 +23,5 @@ The reason I'm excited: this isn't a new database to operate or a new infrastruc
 tier to justify. If you already have Postgres, `pgvector` is a `CREATE EXTENSION` and
 a column type. The abstraction cost of a purpose-built vector DB is worth it at some
 scale or feature requirement, but that scale is not where most projects start.
+
+*Update: after indexing a larger corpus (around 100k rows), the IVFFlat `lists` setting matters more than I implied. The rule of thumb is `sqrt(rows)` for up to a million rows and `rows / 1000` after that. Also worth noting: the index must be built after rows are inserted — an empty-table index won't rebalance. Added a `VACUUM ANALYZE` pass before the index creation in my actual scripts.*
