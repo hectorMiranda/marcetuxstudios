@@ -24,3 +24,5 @@ that makes me better in every other language I touch. That was not the plan goin
 but it's the outcome. 2024 looks like: full-time somewhere in the LLM/AI space, more
 local inference experiments, and finding out how much of what I learned this year
 survives contact with a production system at scale.
+
+*Update: worth adding what I didn't have room for in the retrospective — the Mistral 7B release in September is the punctuation mark that closes the year's open-source story. In January the open-source option was "leaked weights with a legal question mark." In December it's a commercially licensed 7B model that runs on a Pi 5 and outperforms models twice its size. That's a year of progress compressed into one sentence.*
