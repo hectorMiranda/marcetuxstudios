@@ -26,3 +26,10 @@ Most projects never get there. Starting with pgvector means you start with somet
 you already understand. Migrate when the numbers say migrate, not when the docs say
 you might someday need to. The operational surface you don't add is the cost you
 don't pay.
+
+*Update: Worth noting — pgvector HNSW doesn't push filters into the index scan the
+way a dedicated vector DB does; Postgres applies a post-filter, which means
+filter-heavy queries return fewer than k results when the filtered fraction is small.
+For workloads where you're always filtering to a narrow tenant or category, measure
+the recall vs. Pinecone's native filter support before committing. Still the right
+default start; just know where the edge is.*
