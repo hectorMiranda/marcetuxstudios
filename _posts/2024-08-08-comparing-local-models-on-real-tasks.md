@@ -25,3 +25,11 @@ The right model for a task is an empirical question, not a chart question. Runni
 your own task against your own data for ten minutes tells you more than a benchmark
 paper. I should have done this comparison six months ago instead of defaulting to
 Mistral out of habit.
+
+*Update: I also ran these models against a second task — code explanation for the
+tutoring work — and the ranking shifts. Phi-3 Mini degrades on code that mixes
+multiple languages or frameworks; Llama 3 8B stays solid. Gemma 2 produces longer
+explanations than students typically find useful without additional instructions to
+keep answers brief. Mistral 7B is the surprise winner for short code explanation:
+concise by default, correct on common patterns. The right model varies by task more
+than I had accounted for. Worth measuring your actual task, not just one.*
