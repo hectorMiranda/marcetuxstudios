@@ -23,3 +23,9 @@ framework, the observability will be in every stack, and the engineers who spent
 building and debugging agentic systems will be the ones who can move fast because
 they've already made the mistakes. The experimentation tax has been paid; what's left
 is applying what we learned.
+
+*Update: worth adding — the eval tooling for agents also matured meaningfully in 2025.
+A year ago most teams were evaluating by hand or not at all. The pattern of running
+automated evals in CI against a curated test set is now common enough that I encounter
+it in client codebases without having introduced it. That's a good sign: the discipline
+is spreading on its own.*
